@@ -1,0 +1,24 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+
+	frankenphp {
+		#worker /path/to/your/worker.php
+		{$FRANKENPHP_CONFIG}
+	}
+}
+
+{$SERVER_NAME:localhost} {
+	route {
+		root * /var/app/public/
+		encode zstd br gzip
+
+
+		@static {
+			file
+          		path *.ico *.css *.js *.gif *.jpg *.jpeg *.png *.svg *.woff *.woff2 *ttf *.svg
+        	}
+        	header @static Cache-Control max-age=5184000
+
+		php_server
+	}
+}
