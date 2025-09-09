@@ -8,7 +8,8 @@ ENV SERVER_NAME=":80"
 # ENV CADDY_GLOBAL_OPTIONS="debug"
 
 # add additional extensions here:
-RUN install-php-extensions mysqli intl pcntl gd pdo_mysql bcmath opcache exif zip mongodb redis imagick
+ENV PHP_EXTENSTIONS="mysqli intl pcntl gd pdo_mysql bcmath opcache exif zip redis imagick"
+RUN install-php-extensions $PHP_EXTENSTIONS
 
 COPY ./image /bd_build
 
